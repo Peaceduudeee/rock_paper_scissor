@@ -13,48 +13,58 @@ function playGame(userChoice, getComputerChoice){
     let compResult=getComputerChoice();
     console.log(compResult);
     if(userChoice==compResult){
-        return "Oops! You both have same choice, try again";
+        return 1;
     }
     if(userChoice=="ROCK" && compResult=="PAPER"){
-        return "You lost! Paper beats Rock";
+        return 2;
     }
     else if(userChoice=="ROCK" && compResult=="SCISSORS"){
-        return "You Won! Rock beats scissors";
+        return 3;
     }
     else if(userChoice=="SCISSORS" && compResult=="ROCK"){
-        return "You lost! Scissors beats Rock";
+        return 4;
     }
     else if(userChoice=="SCISSORS" && compResult=="PAPER"){
-        return "You Won! Scissors beats Paper";
+        return 5;
     }
     else if(userChoice=="PAPER" && compResult=="SCISSORS"){ 
-        return "You Lost! Scissors beats Paper";
+        return 6;
     }
     else{
-        return "You Won! Paper beats Rock";
+        return 7;
     }
 }
 
+// game();
+let userAns="System";
+let playerScores=0;
+let computerScores=0;
+const ps=document.querySelector('#playerScore');
+const cs=document.querySelector('#computerScore')
+const btn=document.querySelectorAll('button');
+btn.forEach((eachButton)=>{
+    eachButton.addEventListener('click',()=>{
+        // console.log(eachButton.innerText);
+        userAns=eachButton.innerText;
+        let k=playGame(userAns, getComputerChoice);
+        if(k%2==0)
+        {
+            computerScores++;
+            cs.innerText=computerScores;
+            if(computerScores==5) alert("You Lost!");
+        }
+        else if(k!=1)
+        {
+            playerScores++;
+            ps.innerText=playerScores;
+            if(playerScores==5) alert("You Won!");
+        } 
+        else {
+            alert("You both Choose same!");
+        }
+        // console.log(userAns);
+        // userAns=userAns.toUpperCase();
+    })
+})
+console.log(userAns);
 
-function game(){
-    let result=0;
-    // console.log("helloworld");
-    for(let i=0; i<5; i++){
-        let userChoice=prompt(`Write down your choice. Game No. - ${i+1}`);
-        let upperCaseChoice=userChoice.toUpperCase();
-        let thisGameResult=playGame(upperCaseChoice, getComputerChoice);
-        alert(thisGameResult);
-        if(thisGameResult=="Oops! You both have same choice, try again"){
-            console.log(result);
-            continue;
-        }
-        if(thisGameResult== "You lost! Paper beats Rock"|| "You lost! Scissors beats Rock" || "You Lost! Scissors beats Paper"){
-            result--;
-        }
-        else result++;
-        console.log(result);
-    }
-    if(result<0) console.log("You lost");
-    else console.log("You Won");
-}
-game();

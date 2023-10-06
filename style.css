@@ -1,0 +1,16 @@
+.btn, #result{
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    gap: 30px;
+    align-items:center;
+    
+    /* text-align: center; */
+}
+h1{
+    text-align: center;
+}
+
+body{
+    background-color: lightblue;
+}
