@@ -42,6 +42,13 @@ let computerScores=0;
 const ps=document.querySelector('#playerScore');
 const cs=document.querySelector('#computerScore')
 const btn=document.querySelectorAll('button');
+function resetScores(){
+                playerScores=0;
+                computerScores=0;
+                cs.innerText=computerScores;
+                ps.innerText=playerScores;
+                return;
+}
 btn.forEach((eachButton)=>{
     eachButton.addEventListener('click',()=>{
         // console.log(eachButton.innerText);
@@ -57,7 +64,11 @@ btn.forEach((eachButton)=>{
         {
             playerScores++;
             ps.innerText=playerScores;
-            if(playerScores==5) alert("You Won!");
+            if(playerScores==5)
+            {
+                resetScores();
+                alert("You Won!");
+            } 
         } 
         else {
             alert("You both Choose same!");
